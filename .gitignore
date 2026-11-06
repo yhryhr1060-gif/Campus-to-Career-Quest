@@ -1,0 +1,29 @@
+
+# Secrets and environment variables
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Logs
+*.log
+
+# Private data
+private/
+data/private/
+
+# Operating system files
+Thumbs.db
+.DS_Store
