@@ -1,29 +1,74 @@
-
-# Secrets and environment variables
+# Secrets: only the reviewed, empty template is public.
 .env
 .env.*
 *.env
+!.env.example
 *.pem
 *.key
 *.p12
 *.pfx
+credentials*.json
+secrets*.json
 
-# Dependencies
+# Dependencies and Python/Node caches
 node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage*
+htmlcov/
+*.tsbuildinfo
 
-# Build outputs
+# Generated builds, reports and local automation artifacts
 dist/
 build/
 .next/
 out/
-
-# Logs
+output/
+reports/
+.playwright-cli/
+test-results/
+playwright-report/
 *.log
 
-# Private data
+# Private runtime data, local models, recordings and archives
+data/
 private/
-data/private/
+models/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.onnx
+*.onnx_data
+*.pt
+*.pth
+*.safetensors
+*.wav
+*.mp3
+*.m4a
+*.webm
+*.zip
+*.7z
+*.tar
+*.gz
+*.bundle
 
-# Operating system files
+# The owner's original illustrations are not part of the public code export.
+frontend/src/assets/cafe/cafe-background.png
+frontend/src/assets/cafe/ivy-standing.png
+frontend/src/assets/scenes/library-desk.png
+frontend/src/assets/scenes/campus-corridor.png
+frontend/src/assets/scenes/professor-office.png
+
+# Local editor/OS files
+.vscode/
+.idea/
 Thumbs.db
 .DS_Store

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+<title>Campus coffee corner — public placeholder</title>
+<rect width="1672" height="941" fill="#e9dfcc"/>
+<path d="M0 620H1672V941H0Z" fill="#ba9b78"/>
+<path d="M0 620H1672" stroke="#806c55" stroke-width="8"/>
+<rect x="115" y="90" width="520" height="360" rx="8" fill="#78968b" stroke="#706249" stroke-width="20"/><path d="M375 90V450M115 270H635" stroke="#e9dfcc" stroke-width="15"/><rect x="900" y="450" width="650" height="270" rx="18" fill="#786c58"/><rect x="875" y="430" width="700" height="35" rx="12" fill="#f2e4cc"/><rect x="1100" y="300" width="120" height="130" rx="18" fill="#494f4b"/><circle cx="1160" cy="350" r="22" fill="#d7c5a3"/><ellipse cx="440" cy="710" rx="310" ry="70" fill="#9a7551"/><path d="M440 730V941" stroke="#685341" stroke-width="45"/>
+</svg>

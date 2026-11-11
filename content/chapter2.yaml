@@ -1,0 +1,213 @@
+# Chapter 2 · Harbourton University — asking for an extension
+# Everything the game knows about this chapter lives here, not in code.
+# Times use story-clock codes: "WED 14:00", "FRI 18:00", "NEXT WED", "SUN" (no time = vague).
+
+id: chapter2
+version: "0.2.0"
+title: "Chapter 2 · Harbourton University"
+location: "Harbourton University · Computer Science Building"
+
+# All of "today / tomorrow / Sunday" is read against this clock, never the computer's real time.
+story_clock: "WED 14:00"
+story_clock_label: "Wednesday, 14:00"
+
+# CS101 deadlines are always at 6 pm. When the learner names a day without a clock time
+# ("Sunday evening", "by Saturday"), Prof. Chen proposes this time and the learner must confirm it.
+default_due_time: "18:00"
+
+player:
+  name: Alex   # default nickname; a learner may choose another one
+
+# Shown once at the starting place.
+intro: "Wednesday, 14:00. After three days in bed you are back at your desk in the library. The CS101 report is due on Friday and you are nowhere near ready. Prof. Chen's office hours have just started."
+start_area: library
+
+task:
+  situation: "You have been ill for three days. Your CS101 project report is due Friday 18:00, and you've fallen behind."
+  target: "Prof. Chen, CS101 lecturer — his office hours are on now."
+  goal: "Negotiate a workable new plan for the report, and confirm it."
+  goal_short: "the report deadline"
+
+characters:
+  prof_chen:
+    name: "Prof. Chen"
+    role: "CS101 lecturer"
+    persona: "a fair but busy lecturer who cares about students and likes concrete plans"
+    speech_style: "calm, friendly, brief; plain spoken English; 1-3 sentences per turn"
+  ivy:
+    name: "Ivy"
+    role: "your classmate"
+
+# Compact campus: four places the learner clicks between (no walking). Glyphs are placeholders, not art.
+areas:
+  - id: library
+    label: "Library · study desk"
+    icon: "📚"
+    description: "Your usual desk on the second floor. Your things are where you left them three days ago."
+  - id: corridor
+    label: "CS corridor"
+    icon: "🪧"
+    description: "The corridor of the Computer Science Building. A notice board hangs between the office doors."
+  - id: cafe
+    label: "Coffee corner"
+    icon: "☕"
+    description: "A few tables beside the vending machines. Ivy from your CS101 group is here with a coffee."
+  - id: office
+    label: "Outside Prof. Chen's office"
+    icon: "🚪"
+    description: "Room 2.14. The door is half open; office hours are on."
+
+# Things and people to click. `note` is what goes into the learner's notes; `expressions` lists target
+# expressions that occur, in context, in that text. Nothing here is required before writing.
+hotspots:
+  - id: laptop
+    area: library
+    kind: object
+    label: "Your laptop"
+    title: "CS101 project report — your draft"
+    text: "The file is open where you left it: an introduction, and then a list of headings. Nothing else yet."
+    note: "Your report so far: an introduction and a list of headings."
+  - id: phone
+    area: library
+    kind: object
+    label: "Your phone"
+    title: "A message from Ivy"
+    speaker: "Ivy"
+    text: "Heard you've been ill — hope you're better! I could send you my lecture notes by tonight. I'm at the coffee corner till three if you want to talk about Prof. Chen."
+    note: "Ivy offered her lecture notes and is at the coffee corner."
+    expressions: [C4_03]
+  - id: syllabus
+    area: library
+    kind: object
+    label: "CS101 syllabus"
+    title: "CS101 Syllabus — Assessment"
+    text: "Late submission requires the lecturer's prior approval."
+    note: "Syllabus: late submission needs the lecturer's prior approval."
+  - id: noticeboard
+    area: corridor
+    kind: object
+    label: "Notice board"
+    title: "Notice board"
+    text: "Prof. Chen – Office hours: Wed 14:00–15:00"
+    note: "Office hours: Wed 14:00–15:00 (that's now)."
+  - id: ivy
+    area: cafe
+    kind: person
+    label: "Ivy"
+    title: "Ivy · your classmate"
+    speaker: "Ivy"
+    text: "You're back! You still look a bit pale. If you're going to see Prof. Chen about the report: he likes concrete plans — just saying."
+    note: "Ivy: Prof. Chen likes concrete plans."
+    topics:
+      - id: extension
+        ask: "Have you ever asked him for more time?"
+        reply: "Last term, yes — I had flu the week of the lab report. I emailed him before I went to see him: “Unfortunately, I've been ill, so I haven't been able to finish the lab.” He answered within the hour."
+        note: "Ivy emailed Prof. Chen first, explaining why she was behind."
+        expressions: [C4_02]
+      - id: request
+        requires: extension
+        ask: "What did you ask for, exactly?"
+        reply: "I kept it polite and specific: “Would it be possible to hand it in on Monday instead?” That was my lab, though — I've no idea what he can accept for your report."
+        note: "Ivy asked politely and named a specific day (for her own lab)."
+        expressions: [C4_01]
+  - id: office_door
+    area: office
+    kind: moment
+    label: "Listen at the door"
+    title: "At the half-open door"
+    speaker: "A student, leaving"
+    text: "“Thank you, Professor. I'll make sure to send it by Friday.” Prof. Chen's voice follows her out: “Good. A clear plan — that's what I like to see.”"
+    note: "Another student promised a clear date, and Prof. Chen approved."
+    expressions: [C4_04]
+
+# Facts both sides know (shown in the task summary, given to the NPC)
+public_facts:
+  - "Alex has been ill for three days."
+  - "The CS101 project report is due Friday at 18:00."
+  - "Late submission requires the lecturer's prior approval."
+  - "It is Wednesday, 14:00, during Prof. Chen's office hours."
+
+# Prof. Chen knows these; they are revealed only in conversation.
+private_info:
+  - when: "the learner proposes a date after Sunday 18:00"
+    reveal: "You are away at a conference next week and must submit grades on Monday, so the latest you can accept is Sunday 18:00."
+  - when: "the learner asks what is possible or offers to split the work"
+    reveal: "A staged submission agreed in advance is fine: an outline by Friday 18:00 and the full report by Sunday 18:00."
+
+# Hard limits — the rule engine enforces these, not the model.
+rules:
+  outline_due_max: "FRI 18:00"
+  final_due_max: "SUN 18:00"
+  max_turns: 12
+  nudge_at_turn: 10
+
+endings:
+  full:
+    title: "The whole report, by Sunday"
+    description: "Hand in the complete report by Sunday 18:00 at the latest."
+  staged:
+    title: "Split into two steps"
+    description: "Outline by Friday 18:00, full report by Sunday 18:00 at the latest."
+
+# Fires once, the first time the learner proposes something after the limit.
+constraint_change:
+  id: conference_trip
+  npc_line: "Hmm, next week is difficult, I'm afraid — I'm away at a conference, and I have to submit grades on Monday. Is there anything you could manage before then?"
+
+# Lines the server uses when the rule engine (not the model) decides what happens.
+npc_lines:
+  opening_fallback: "Ah, Alex, come in. In your email, you asked about the project report. What exactly are you proposing?"
+  reject_after_limit: "I'm sorry, but I really can't go past {final_max} — I'm away next week and grades are due on Monday."
+  reject_outline_late: "If you'd like to split it, I'd need the outline by {outline_max}. Otherwise, the whole report by {final_max}."
+  reject_past: "That's already passed, Alex. What could you realistically manage?"
+  reject_order: "The outline would need to come before the full report, wouldn't it?"
+  follow_up_before_agree: "Before I say yes — where are you with it right now, and what exactly would I get from you, and when?"
+  restate_full: "So that's the full report by {final} — can you confirm that?"
+  restate_staged: "So that's the outline by {outline}, and the full report by {final} — can you confirm that?"
+  confirm_unclear: "Just so we're clear: {plan}. Is that a yes? (You can also press Confirm.)"
+  proposal_withdrawn: "Alright, let's not fix that, then. What could you manage instead?"
+  agreed_close: "Good, that's settled. Feel better, Alex."
+  neutral_fallback: "Sorry — could you say that again?"
+  clarify_plan: "Let me make sure I understand — what exactly would you send me, and by when?"
+  nudge: "Office hours are nearly over, Alex. What's your concrete plan?"
+  pause: "Let's pause here for now. Have a think, and come back with a concrete plan."
+
+# Expression cards (shown in practice mode). `pattern` is a regex used only to log candidates.
+expressions:
+  - id: C4_01
+    text: "Would it be possible to …?"
+    function: "Making a request"
+    pattern: "\\bwould it be possible to\\b"
+  - id: C4_02
+    text: "Unfortunately, I've been …, so I haven't been able to …"
+    function: "Explaining the reason and your progress"
+    pattern: "\\bunfortunately\\b.*\\bhaven'?t been able to\\b|\\bi'?ve been\\b.*\\bso i haven'?t\\b"
+  - id: C4_03
+    text: "I could … by …"
+    function: "Offering an alternative"
+    pattern: "\\bi could\\b.*\\bby\\b"
+  - id: C4_04
+    text: "I'll make sure (that / to) …"
+    function: "Making a commitment"
+    pattern: "\\bi(?:'ll| will) make sure\\b"
+
+# Four-level hints; unlocked after the constraint change. Opening one more level each time; no penalty.
+hints:
+  unlock_after: conference_trip
+  levels:
+    - level: 1
+      kind: "Direction"
+      text: "Offer an earlier plan. You could split the work."
+    - level: 2
+      kind: "Key words"
+      text: "outline · Friday · full report · Sunday"
+    - level: 3
+      kind: "Sentence starter"
+      text: "I could send you … by …"
+    - level: 4
+      kind: "Full example"
+      text: "I could send you the outline by Friday and the full report by Sunday."
+
+xp:
+  prep_complete: 20
+  first_agreement: 30

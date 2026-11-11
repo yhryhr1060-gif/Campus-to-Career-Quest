@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+<title>Library study desk — public placeholder</title>
+<rect width="1672" height="941" fill="#e9dfcc"/>
+<path d="M0 620H1672V941H0Z" fill="#ba9b78"/>
+<path d="M0 620H1672" stroke="#806c55" stroke-width="8"/>
+<rect x="80" y="90" width="310" height="390" fill="#7f8e7d" stroke="#f8f0df" stroke-width="20"/><path d="M235 90V480M80 280H390" stroke="#f8f0df" stroke-width="12"/><rect x="1050" y="100" width="470" height="500" fill="#826b52"/><path d="M1050 240H1520M1050 400H1520" stroke="#d0b58b" stroke-width="16"/><path d="M1090 145V225M1150 145V225M1210 145V225M1280 145V225M1360 145V225M1440 145V225M1100 280V380M1180 280V380M1270 280V380M1370 280V380M1470 280V380" stroke="#cbc19a" stroke-width="35"/><path d="M60 600H950L1050 830H0Z" fill="#c49d6c" stroke="#8d6d49" stroke-width="8"/><rect x="265" y="575" width="230" height="120" rx="12" fill="#59656a"/><path d="M250 700H510" stroke="#374349" stroke-width="14"/><rect x="545" y="595" width="130" height="125" rx="7" fill="#fff7e7" stroke="#c3b49a" stroke-width="7"/><path d="M568 615H650M568 637H650M568 659H650" stroke="#b0b7b1" stroke-width="6"/>
+</svg>

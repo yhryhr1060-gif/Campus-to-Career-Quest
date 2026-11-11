@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+<title>Campus corridor — public placeholder</title>
+<rect width="1672" height="941" fill="#e9dfcc"/>
+<path d="M0 620H1672V941H0Z" fill="#ba9b78"/>
+<path d="M0 620H1672" stroke="#806c55" stroke-width="8"/>
+<path d="M650 0L990 0L1150 620H500Z" fill="#d7c8af"/><path d="M650 0L500 620M990 0L1150 620" stroke="#b7a78f" stroke-width="10"/><rect x="80" y="130" width="410" height="340" rx="8" fill="#ad8a59" stroke="#796243" stroke-width="22"/><rect x="140" y="190" width="120" height="155" transform="rotate(-4 200 270)" fill="#fff2d6"/><rect x="285" y="225" width="130" height="170" transform="rotate(4 350 300)" fill="#dce5d7"/><rect x="1230" y="135" width="260" height="490" fill="#879584" stroke="#6d796a" stroke-width="18"/><circle cx="1440" cy="390" r="12" fill="#d9cda6"/>
+</svg>

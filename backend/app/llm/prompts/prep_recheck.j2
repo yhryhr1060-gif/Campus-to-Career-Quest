@@ -1,0 +1,24 @@
+An English learner (about CEFR B1–B2) revised an email after feedback. For each earlier point, decide whether the ORIGINAL PROBLEM is still in the REVISED email.
+- "resolved": the problem is gone. The learner may have fixed it in their own way; they do NOT need to use any particular wording.
+- "still_present": the same problem is still there (possibly in changed words).
+- "unclear": you cannot tell, or the revision makes the meaning different so the point no longer applies clearly.
+Judge only the listed problem. Do not look for new problems here and do not reward or punish copying.
+Read the WHOLE revised email. An unchanged phrase may now be correct because its context, referent,
+or explanation changed. Never infer that the problem remains merely because the old words remain.
+Do not infer the learner's intended meaning when it is ambiguous; choose "unclear" instead.
+Return every listed id exactly once. A missing answer is a failed check, not an uncertain judgement.
+"current_quote": copy exactly from the REVISED email the words that now carry this part of the message. Leave it empty only if the learner removed that part.
+"note": one short sentence in simple English.
+
+EARLIER EMAIL:
+"""{{ old_text }}"""
+
+REVISED EMAIL:
+"""{{ new_text }}"""
+
+EARLIER POINTS:
+{% for item in items %}- id: {{ item.id }} | type: {{ item.type }}
+  the learner had written: """{{ item.quote }}"""
+  problem: {{ item.reason }}
+{% endfor %}
+Output ONLY JSON: {"results": [{"id": "...", "status": "resolved|still_present|unclear", "current_quote": "...", "note": "..."}]}

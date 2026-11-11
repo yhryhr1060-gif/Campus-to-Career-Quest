@@ -1,0 +1,60 @@
+# Expected-answer cases for the whole-draft writing check.
+#
+# STATUS: DRAFT. These expectations were drafted during development and have NOT yet been reviewed
+# by a human English teacher. Until `reviewed_by` is filled in for a case, treat results as a
+# development aid, not as evidence that the feedback is correct. (Proposal Table 3-1, "Is AI feedback
+# correct?", requires human review of 20-30 feedback items; this file is only the starting point.)
+#
+# must_flag:      words in the email with a real problem. Pass = some shown point of an allowed type
+#                 quotes text overlapping these words and is NOT marked optional.
+# must_not_error: acceptable wording. Fail = a shown point overlapping it is judged clear_error.
+# Not finding a problem that is not listed here is neither pass nor fail: coverage is not claimed.
+version: 1
+cases:
+  - id: agreement-and-tense
+    reviewed_by: null
+    email: "Dear Prof. Chen, I has been sick for three days and I didn't went to class. Could I send the report on Sunday? Thanks, Alex"
+    must_flag:
+      - {words: "I has been", types: [grammar]}
+      - {words: "didn't went", types: [grammar]}
+    must_not_error: ["Could I send the report on Sunday?"]
+  - id: direct-but-correct
+    reviewed_by: null
+    email: "Dear Prof. Chen, I was ill this week. I need more time for the report. I will send it on Sunday at 6 pm. Thanks, Alex"
+    must_flag: []
+    must_not_error: ["I need more time for the report.", "I will send it on Sunday at 6 pm."]
+  - id: wrong-word
+    reviewed_by: null
+    email: "Dear Prof. Chen, I have been ill, so I want to borrow a few days for the report. I can send it on Sunday. Thanks, Alex"
+    must_flag:
+      - {words: "borrow a few days", types: [accuracy, naturalness, grammar]}
+    must_not_error: ["I have been ill"]
+  - id: since-for
+    reviewed_by: null
+    email: "Dear Prof. Chen, I have been sick since three days, so I am behind with the report. Would it be possible to hand it in on Sunday evening? Thanks, Alex"
+    must_flag:
+      - {words: "since three days", types: [grammar, accuracy]}
+    must_not_error: ["Would it be possible to hand it in on Sunday evening?"]
+  - id: broken-logic
+    reviewed_by: null
+    email: "Dear Prof. Chen, I finished the report early because I was sick for three days. So I need an extension until Sunday. Thanks, Alex"
+    must_flag:
+      - {words: "I finished the report early because I was sick", types: [logic, accuracy]}
+    must_not_error: []
+  - id: no-concrete-request
+    reviewed_by: null
+    email: "Dear Prof. Chen, I have been ill for three days and I am worried about the project report. I hope you can understand. Thanks, Alex"
+    must_flag:
+      - {words: "I hope you can understand", types: [task_info, logic]}
+    must_not_error: ["I have been ill for three days"]
+  - id: negation-must-survive
+    reviewed_by: null
+    email: "Dear Prof. Chen, I am sorry, but I can't finish the report by Friday. I don't want to hand in bad work. Could I have until Sunday? Thanks, Alex"
+    must_flag: []
+    must_not_error: ["I can't finish the report by Friday.", "I don't want to hand in bad work."]
+  - id: article-and-plural
+    reviewed_by: null
+    email: "Dear Prof. Chen, I need more informations about the report. I was in hospital for three days. Can I submit on Sunday? Thanks, Alex"
+    must_flag:
+      - {words: "informations", types: [grammar]}
+    must_not_error: ["I was in hospital for three days."]   # British English; no article needed

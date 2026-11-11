@@ -1,0 +1,9 @@
+Extract what the learner told {{ npc.name }} in this final email.
+Use only these fields: situation (the problem or reason), request (what they ask for), proposal (their concrete plan: date, time, what they will do).
+For each field you fill, write a short "value" and copy the supporting words exactly as "quote".
+Leave a field out if the learner did not say it. Do not infer, correct or add anything — if they wrote "next week", the proposal is "next week", not a date.
+
+EMAIL:
+"""{{ email }}"""
+
+Output ONLY JSON: {"fields": [{"field": "situation|request|proposal", "value": "...", "quote": "..."}]}
